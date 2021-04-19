@@ -1,4 +1,4 @@
-import { Controller, Get, Param, Post } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post } from '@nestjs/common';
 import { AppService } from './app.service';
 
 @Controller()
@@ -32,7 +32,13 @@ export class AppController {
     return this.appService.getZadania();
   }
 
-  /*
-    Tutaj należy dopisać metodę dodającą zadanie (analogicznie do `addToList`)
-  */
+  @Get('/zadania/:element')
+  addZadanie(@Param('element') value) {
+    return this.appService.addZadanie(value);
+  }
+
+  @Get('/zad/:id')
+  getZadanieById(@Param('id') value) {
+    return this.appService.getZadanieById(value);
+  }
 }

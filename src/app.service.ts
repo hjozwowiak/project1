@@ -26,7 +26,12 @@ export class AppService {
     return this.zadania;
   }
 
-  /*
-    Tutaj należy dopisać metodę dodającą zadanie (analogicznie do `addToList`)
-  */
+  addZadanie(value) {
+    this.zadania.push(value);
+  }
+
+  getZadanieById(id) {
+    console.log(id);
+    return this.zadania[id];
+  }
 }
