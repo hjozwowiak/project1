@@ -52,4 +52,6 @@ export class AppService {
   async deleteZadanieById(id) {
     await this.zadanieRepository.delete(id); // usunięcie z bazy danych zadania o ID "id"
   }
+
+  // TODO: poniżej dopisz metody wykorzystywane przez kontroler
 }
