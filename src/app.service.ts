@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
+import { Animal } from './entities/animal.entity';
 import { Zadanie } from './entities/zadanie.entity';
 
 @Injectable()
@@ -8,6 +9,9 @@ export class AppService {
   constructor(
     @InjectRepository(Zadanie)
     private zadanieRepository: Repository<Zadanie>,
+
+    @InjectRepository(Animal)
+    private animalRepository: Repository<Animal>,
   ) {}
 
   getName() {
@@ -39,14 +43,14 @@ export class AppService {
   }
 
   async updateZadanieById(id, values) {
-    let zadanie = await this.getZadanieById(id);
+    let zadanie = await this.getZadanieById(id); // pobranie zadania o ID "id"
 
-    zadanie.tytul = values.tytul;
-    zadanie.opis = values.opis;
-    zadanie.status = values.status;
+    zadanie.tytul = values.tytul; // aktualizacja tytułu pobranego zadania
+    zadanie.opis = values.opis; // aktualizacja opisu pobranego zadania
+    zadanie.status = values.status; // aktualizacja statusu pobranego zadania
 
-    await zadanie.save();
-    return zadanie;
+    await zadanie.save(); // zapisanie zaktualizowanego zadania do bazy danych
+    return zadanie; // zwrócenie zaktualizowanego zadania
   }
 
   async deleteZadanieById(id) {
